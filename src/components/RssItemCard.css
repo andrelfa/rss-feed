@@ -1,0 +1,24 @@
+.rss-item-card {
+    color: #fff;
+    text-align: left;
+    margin: 20px 0;
+    padding: 10px 15px;
+    border: 1px solid #38444d;
+    border-radius: 10px;
+}
+
+.title {
+    font-weight: bold;
+    border-bottom: 1px solid #38444d;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.publish-date {
+    font-weight: normal;
+    font-size: 12px;    
+}
+
+img {
+    max-width: 100%;
+}

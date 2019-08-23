@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Service from './services/rss-feeds';
+import RssItemCard from './components/RssItemCard';
 
-function App() {
+const App = () => {
+
+  const [feed, setFeed] = useState([]);
+
+  useEffect(() => {
+    Promise.all([Service.getBBCFeed(), Service.getIGNFeed()])
+    .then((res) => {
+      if (!feed.length) {
+        console.log('res', res[1]);
+        const [bbcFeed, IGNFeed] = res;
+        setFeed([...bbcFeed, ...IGNFeed]);
+      }
+    }) 
+  }, [feed]);
+
+  const feedItems = () => {
+    return feed.map((item) => {
+      return (<RssItemCard 
+        key={item.link} 
+        title={item.title} 
+        description={item.description} 
+        link={item.link}
+        publishDate={item.publishDate}
+      />)
+    })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="feed-container">
+        {feed.length && feedItems()}
+      </div>
     </div>
   );
 }
