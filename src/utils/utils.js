@@ -1,7 +1,10 @@
+import moment from 'moment' ;
+moment.locale('pt-BR');
+
 export const formatDate = (date) => {
   if (date) {
       const options = {
-      day: 'numeric', month: 'numeric', year: 'numeric', timeZone: 'UTC'
+      day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', timeZone: 'UTC'
       };    
       let formatter = new Intl.DateTimeFormat('pt-BR', options);
       if (formatter.resolvedOptions().timeZone.toLowerCase() === 'etc/unknown') {
@@ -10,4 +13,12 @@ export const formatDate = (date) => {
       }    
       return formatter.format(new Date(date));
   }
+}
+
+export const sortByDateWithMoment = (array, field) => {
+  return array.sort(function compare(a, b) {
+    var dateA = new Date(a[field]);
+    var dateB = new Date(b[field]);
+    return dateB - dateA;
+  });
 }

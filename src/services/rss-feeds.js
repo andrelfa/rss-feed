@@ -14,7 +14,7 @@ class RSSFeedService {
                 description: item.description._cdata,
                 title: `BBC UK - ${item.title._cdata}`,
                 link: item.link._text,
-                publishDate: item.pubDate._text
+                publishDate: moment(item.pubDate._text).format('YYYY-MM-DD HH:mm')
             }
         }))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
@@ -29,9 +29,9 @@ class RSSFeedService {
         .then(response => response.map((item) => {
             return {
                 description: item.description._cdata,
-                title: `IGN - ${item.title._text}`,
+                title: `Kotaku - ${item.title._text}`,
                 link: item.link._text,
-                publishDate: item.pubDate._text
+                publishDate: moment(item.pubDate._text).format('YYYY-MM-DD HH:mm')
             }
         }))
         .then(response => response.filter(item => item.link.indexOf('kotaku') > -1))

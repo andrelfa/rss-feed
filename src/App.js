@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Service from './services/rss-feeds';
 import RssItemCard from './components/RssItemCard';
+import { sortByDateWithMoment } from './utils/utils';
 
 const App = () => {
 
@@ -13,10 +14,12 @@ const App = () => {
       if (!feed.length) {
         console.log('res', res[1]);
         const [bbcFeed, IGNFeed] = res;
-        setFeed([...bbcFeed, ...IGNFeed]);
+        setFeed(sortByDateWithMoment([...bbcFeed, ...IGNFeed], 'publishDate'));
       }
     }) 
   }, [feed]);
+
+
 
   const feedItems = () => {
     return feed.map((item) => {

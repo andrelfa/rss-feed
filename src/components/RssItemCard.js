@@ -10,13 +10,11 @@ const RssItemCard = (props) => {
         <p className="title">
           {props.title}
           <span className="publish-date">
-            {' '}- {formatDate(props.publishDate)}            
+            {' '}- {formatDate(props.publishDate)}
           </span>
         </p>
         <div className="description-container">
           <p className="description" dangerouslySetInnerHTML={{ __html: props.description }} />
-            {/* {props.description}
-          </p> */}
         </div>
       </a>
     </div>
