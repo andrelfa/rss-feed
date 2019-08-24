@@ -12,6 +12,7 @@
     border-bottom: 1px solid #38444d;
     padding-bottom: 15px;
     margin-bottom: 15px;
+    font-size: 35px;
 }
 
 .publish-date {
@@ -21,4 +22,9 @@
 
 img {
     max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px !important;
+    height: auto;
+    border-radius: 10px;
 }
