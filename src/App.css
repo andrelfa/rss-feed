@@ -30,3 +30,16 @@
   column-count: 3;
   column-gap: 20px;  
 }
+
+@media (max-width: 768px) {
+  .items-container {
+    /* justify-content: space-between; */
+  
+    -webkit-column-count: 1 !important;
+    -webkit-column-gap: 0px;
+    -moz-column-count: 1 !important;
+    -moz-column-gap: 0px;
+    column-count: 1 !important;
+    column-gap: 20px;  
+  }
+}
