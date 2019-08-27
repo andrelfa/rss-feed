@@ -68,7 +68,7 @@ class RSSFeedService {
         .then(response => response.map((item) => {
             return {
                 feedName: 'Vox',
-                description: item.content._text.length > 600 && `${item.content._text.substring(0, 600).trim()}...`,
+                description: item.content._text.length > 600 ? `${item.content._text.substring(0, 600).trim()}...` : item.content._text,
                 title: `Vox - ${item.title._text}`,
                 link: item.link._attributes.href,
                 publishDate: moment(item.published._text).format('YYYY-MM-DD HH:mm'),
@@ -102,9 +102,10 @@ class RSSFeedService {
         .then(response => response.text())
         .then(response => convert.xml2js(response, { compact: true, spaces: 4 }).rss.channel.item)
         .then(response => response.map((item) => {
+          console.log('item', item);
             return {
                 feedName: 'G1',
-                description: item.description._text.length > 600 && `${item.description._text.substring(0, 600).trim()}...`,
+                description: item.description._text.length > 600 ? `${item.description._text.substring(0, 600).trim()}...` : item.description._text,
                 title: `G1 - ${item.title._text}`,
                 link: item.link._text,
                 publishDate: moment(item.pubDate._text).format('YYYY-MM-DD HH:mm'),
@@ -156,7 +157,6 @@ class RSSFeedService {
         .then(response => response.text())
         .then(response => convert.xml2js(response, { compact: true, spaces: 4 }).feed.entry)
         .then(response => response.map((item) => {
-            console.log('item', item);
             return {
                 feedName: 'Polygon',
                 description: item.content._text,

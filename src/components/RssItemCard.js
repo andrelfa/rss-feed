@@ -7,7 +7,7 @@ const RssItemCard = (props) => {
   return (
     <div className="rss-item-card">
       <a href={props.link}>
-        <p className="title">
+        <p className="title" target="blank">
           {props.title}
           <span className="publish-date">
             {formatDate(props.publishDate)}

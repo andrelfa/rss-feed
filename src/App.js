@@ -9,7 +9,6 @@ const App = () => {
 
   useEffect(() => {
       const fetchData = async () => {
-        // await Promise.all([Service.getBBCFeed(), Service.getKotakuFeed(), Service.getB9Feed()])
         Service.getBBCFeed().then(res => setFeed((old) => sortByDateWithMoment([...old,...res], 'publishDate')));
         Service.getKotakuFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
         Service.getB9Feed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
@@ -18,9 +17,6 @@ const App = () => {
         Service.getG1Feed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
         Service.getWiredFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
         Service.getPolygonFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        const polygon = await Service.getPolygonFeed();
-        console.log('polygon', polygon);
-
       }
 
       fetchData();
