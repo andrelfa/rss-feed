@@ -5,8 +5,6 @@ import RssItemCard from './components/RssItemCard';
 import { sortByDateWithMoment } from './utils/utils';
 
 const App = () => {
-  // const [bbcFeed, setBBCFeed] = useState([]);
-  // const [kotakuFeed, setKotakuFeed] = useState([]);
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
@@ -15,6 +13,14 @@ const App = () => {
         Service.getBBCFeed().then(res => setFeed((old) => sortByDateWithMoment([...old,...res], 'publishDate')));
         Service.getKotakuFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
         Service.getB9Feed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
+        Service.getVoxFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
+        Service.getNYTimesFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
+        Service.getG1Feed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
+        Service.getWiredFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
+        Service.getPolygonFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
+        const polygon = await Service.getPolygonFeed();
+        console.log('polygon', polygon);
+
       }
 
       fetchData();
