@@ -1,10 +1,21 @@
 .rss-item-card {
+    /* color: #fff;
+    text-align: left;
+    margin: 20px 0;
+    padding: 10px 15px;
+    border: 1px solid #38444d;
+    border-radius: 10px;
+    width: 30%;
+    height: max-content; */
     color: #fff;
     text-align: left;
     margin: 20px 0;
     padding: 10px 15px;
     border: 1px solid #38444d;
     border-radius: 10px;
+    width: 100%;
+    height: max-content;
+    white-space: pre-line;
 }
 
 .title {
@@ -13,6 +24,7 @@
     padding-bottom: 15px;
     margin-bottom: 15px;
     font-size: 35px;
+    line-height: normal;
 }
 
 .publish-date {
@@ -27,4 +39,8 @@ img {
     margin-bottom: 30px !important;
     height: auto;
     border-radius: 10px;
+}
+
+.description {
+    line-height: normal;
 }

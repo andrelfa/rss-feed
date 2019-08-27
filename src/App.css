@@ -18,3 +18,15 @@
   padding: 6px 29px;
   border-radius: 40px;
 }
+
+.items-container {
+  /* justify-content: space-between; */
+
+  line-height: 0;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 5;
+  -moz-column-gap: 0px;
+  column-count: 3;
+  column-gap: 20px;  
+}
