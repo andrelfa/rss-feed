@@ -35,11 +35,6 @@ const App = () => {
   }
 
   const handleChangeFilter = (name) => {
-    // const hasItemsWithName = !!feed.filter(item => item.feedName === name).length;
-    // const newFeed = [...feed].filter(item => hasItemsWithName ? item.feedName !== name : item.feedName === name);
-    // setFeed([...newFeed]);
-    // console.log('new feed', newFeed)
-
     const newFeed = [...feed].map((item) => {
       if (item.feedName === name) item.active = !item.active;
       return item;
@@ -57,17 +52,15 @@ const App = () => {
                 Filtros:
               </p>
               <div className="filter-buttons">
-                <button className={`filter-btn ${feed.filter(item => item.feedName === 'Kotaku' && item.active === true).length > 0 ? 'checked' : ''}`} onClick={() => handleChangeFilter('Kotaku')}>
+              <button className={`filter-btn ${feed.filter(item => item.feedName === 'Kotaku' && item.active === true).length > 0 ? 'checked' : ''}`} onClick={() => handleChangeFilter('Kotaku')}>
                   Kotaku
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-12 col-md-12">
-            {feed.length && feedItems()}
-          </div>
+        <div className="items-container">
+          {feed.length && feedItems()}
         </div>
       </div>
     </div>
