@@ -102,7 +102,6 @@ class RSSFeedService {
         .then(response => response.text())
         .then(response => convert.xml2js(response, { compact: true, spaces: 4 }).rss.channel.item)
         .then(response => response.map((item) => {
-          console.log('item', item);
             return {
                 feedName: 'G1',
                 description: item.description._text.length > 600 ? `${item.description._text.substring(0, 600).trim()}...` : item.description._text,
