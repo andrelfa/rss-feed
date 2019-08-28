@@ -3,7 +3,7 @@ import moment from 'moment' ;
 moment.locale('pt-BR');
 
 class RSSFeedService {
-    proxyurl = "https://cors-anywhere.herokuapp.com/";
+    proxyurl = "https://sheltered-reef-69308.herokuapp.com/";
 
     getBBCFeed = () => {
         const url = "http://feeds.bbci.co.uk/news/world/rss.xml"; // site that doesn’t send Access-Control-*
