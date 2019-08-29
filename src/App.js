@@ -8,18 +8,29 @@ const App = () => {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
-      const fetchData = async () => {
-        Service.getBBCFeed().then(res => setFeed((old) => sortByDateWithMoment([...old,...res], 'publishDate')));
-        Service.getKotakuFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        Service.getB9Feed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        Service.getVoxFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        Service.getNYTimesFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        Service.getG1Feed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        Service.getWiredFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-        Service.getPolygonFeed().then(res => setFeed((old) => sortByDateWithMoment([...old, ...res], 'publishDate')));
-      }
-
-      fetchData();
+      Promise.all([
+        Service.getBBCFeed(),
+        Service.getKotakuFeed(),
+        Service.getB9Feed(),
+        Service.getVoxFeed(),
+        Service.getNYTimesFeed(),
+        Service.getG1Feed(),
+        Service.getWiredFeed(),
+        Service.getPolygonFeed(),
+      ]).then((res) => {
+        const [bbc, kotaku, b9, vox, nytimes, g1, wired, polygon] = res;
+        setFeed((old) => sortByDateWithMoment([
+          ...old,
+          ...sortByDateWithMoment(bbc, 'publishDate'),
+          ...sortByDateWithMoment([...kotaku], 'publishDate'),
+          ...sortByDateWithMoment([...b9], 'publishDate'),
+          ...sortByDateWithMoment([...vox], 'publishDate'),
+          ...sortByDateWithMoment([...nytimes], 'publishDate'),
+          ...sortByDateWithMoment([...g1], 'publishDate'),
+          ...sortByDateWithMoment([...wired], 'publishDate'),
+          ...sortByDateWithMoment([...polygon], 'publishDate'),
+        ], 'publishDate'))
+      })
   }, []);
 
   const feedItems = () => {
@@ -42,6 +53,13 @@ const App = () => {
     setFeed([...newFeed]);
   }
 
+  const loading = (
+    <div className="loading-container">
+      <label>Calma que tá carregando...</label>
+      <img src={'./img/spinner.svg'} alt="spinner"/>
+    </div>    
+  )
+
   return (
     <div className="App container">
       <div className="title-container">
@@ -63,12 +81,7 @@ const App = () => {
       </div>
       
       <div className="items-container">
-        <div className="loading-container">
-          <label>Calma que tá carregando...</label>
-          <img src={'./img/spinner.svg'} />
-        </div>
-
-        {feed.length && feedItems()}
+        {feed.length ? feedItems() : loading}
       </div>
     </div>
   );
