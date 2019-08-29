@@ -22,8 +22,6 @@ const App = () => {
       fetchData();
   }, []);
 
-
-
   const feedItems = () => {
     return feed.map((item) => {
       return item.active ? (<RssItemCard 
@@ -45,25 +43,32 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 div col-sm-12">
-            <div className="filter-container">
-              <p className="filter-title">
-                Filtros:
-              </p>
-              <div className="filter-buttons">
-              <button className={`filter-btn ${feed.filter(item => item.feedName === 'Kotaku' && item.active === true).length > 0 ? 'checked' : ''}`} onClick={() => handleChangeFilter('Kotaku')}>
-                  Kotaku
-                </button>
-              </div>
-            </div>
+    <div className="App container">
+      <div className="title-container">
+        <label>
+          Feed dos Amigo
+        </label>
+      </div>
+
+      <div className="filter-container">
+        <label className="filter-title">
+          Filtros:
+        </label>
+
+        <div className="filter-buttons-container">
+          <div className={`filter-button ${feed.filter(item => item.feedName === 'Kotaku' && item.active === true).length > 0 ? 'checked' : ''}`} onClick={() => handleChangeFilter('Kotaku')}>
+            Kotaku
           </div>
         </div>
-        <div className="items-container">
-          {feed.length && feedItems()}
+      </div>
+      
+      <div className="items-container">
+        <div className="loading-container">
+          <label>Calma que tá carregando...</label>
+          <img src={'./img/spinner.svg'} />
         </div>
+
+        {feed.length && feedItems()}
       </div>
     </div>
   );
