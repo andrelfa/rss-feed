@@ -1,21 +1,100 @@
-body {
-    margin: 0;
-    padding: 0;
+/* header */
+.title-container {
+    width: 100%;
 
-    background: #18242f;
+    font-family: var(--bungee);
+    color: #fff;
+    font-size: 54px;
+    line-height: 64px;
 
-    --bungee: 'Bungee Shade', "Verdana", cursive;
-    --crimson: 'Crimson Pro', "Verdana", serif;
-    --farro: 'Farro', "Verdana", sans-serif;
+    text-align: center;
+    user-select: none;
 }
-    body * {
-        box-sizing: border-box;
+.filter-container {
+    width: 100%;
+    margin-top: 40px;
+    padding-bottom: 30px;
+
+    border-bottom: 2px solid #fff;
+}
+.filter-title {
+    width: 100%;
+    display: block;
+
+    font-family: var(--farro);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+.filter-buttons-container {
+    width: 100%;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.filter-button {
+    margin: 0 10px 10px 10px;
+    padding: 10px 20px;
+
+    font-family: var(--farro);
+    color: #18242f;
+    font-size: 14px;
+
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+/* header */
+
+/* conteúdo */
+.items-container {
+    width: 100%;
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap
+}
+.loading-container {
+    width: 100%;
+    margin: 40px auto 0 auto;
+    padding: 40px 20px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    border-radius: 10px;
+    background: #fff;
+}
+    .loading-container label {  
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+
+        font-family: var(--farro);
+        color: #18242f;
+        font-size: 20px;
+        text-align: center;
     }
+    .loading-container img {
+        width: 50px;
+        height: 50px;
+        margin: 0;
 
-.wrapper {
-    width: 100%;
-    padding: 60px 40px;
-}
-.container {
-    width: 100%;
-}
+        animation-name: loading;
+        animation-duration: .8s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    @keyframes loading {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+/* conteúdo */

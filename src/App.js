@@ -79,11 +79,6 @@ const App = () => {
           </div>
         </div>
       </div>
-
-      <div className="loading-container">
-        <label>Calma que tá carregando...</label>
-        <img src={'./img/spinner.svg'} alt="Carregando..." />
-      </div>
       
       <div className="items-container">
         {feed.length ? feedItems() : loading}
