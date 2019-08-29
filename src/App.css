@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #18242f;
+
+    --bungee: 'Bungee Shade', "Verdana", cursive;
+    --crimson: 'Crimson Pro', "Verdana", serif;
+    --farro: 'Farro', "Verdana", sans-serif;
+}
+    body * {
+        box-sizing: border-box;
+    }
+
+.wrapper {
+    width: 100%;
+    padding: 60px 40px;
+}
+.container {
+    width: 100%;
+}

@@ -1,40 +1,39 @@
 .rss-item-card {
-    color: #fff;
-    text-align: left;
-    margin: 20px 0;
+    width: 100%;
     padding: 10px 15px;
+
     border: 1px solid #38444d;
     border-radius: 10px;
-    width: 100%;
-    height: max-content;
-    break-inside: avoid;
 }
+    .rss-item-card a {
+        display: block;
+        margin: 0;
+        text-decoration: none;
+    }
 
 .title {
+    width: 100%;
+    margin: 0;
+
+    font-family: var(--farro);
+    color: #fff;
+
     font-weight: bold;
-    border-bottom: 1px solid #38444d;
+    border-bottom: 1px solid #fff;
     padding-bottom: 15px;
-    margin-bottom: 15px;
     font-size: 27px;
     line-height: normal;
 }
-
 .publish-date {
+    width: 100%;
+    
+    font-family: var(--farro);
+
     font-weight: normal;
     font-size: 12px;   
     margin-top: 5px;
     display: block; 
 }
-
-img {
-    max-width: 100%;
-    margin: 0 auto;
-    display: block;
-    margin-bottom: 30px !important;
-    height: auto;
-    border-radius: 10px;
-}
-
 .description {
     line-height: normal;
 }
