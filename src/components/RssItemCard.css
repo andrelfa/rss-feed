@@ -2,8 +2,8 @@
     width: 100%;
     margin-bottom: 40px;
 
-    border-radius: 10px;
-    background: #fff;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
 }
     .rss-item-card:last-child {
         margin-bottom: 0;
@@ -14,6 +14,9 @@
     margin: 0;
     padding: 20px;
     text-decoration: none;
+
+    border-radius: 5px;
+    background: #fff;
 }
     .card * {
         cursor: pointer;
@@ -32,7 +35,7 @@
     
     font-family: var(--farro);
     color: #18242f;
-    font-size: 20px;
+    font-size: 24px;
     word-break: break-word;
 }
     .title:hover {
@@ -62,7 +65,7 @@
 
     font-family: var(--crimson);
     color: #18242f;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 24px;
 }
@@ -106,16 +109,3 @@
                 background: rgba(51, 63, 74, .4);
                 border-bottom: 1px solid rgba(92, 108, 123, .8);
             }
-
-        /* .description p a {
-            width: 100%;
-            display: block;
-            padding: 10px 0;
-
-            font-family: var(--farro);
-            color: #fff;
-            font-size: 12px;
-            text-align: center;
-            
-            background: #18242f;
-        } */
