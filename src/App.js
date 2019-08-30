@@ -35,10 +35,11 @@ const App = () => {
 
   const feedItems = () => {
     return feed.map((item) => {
-      return item.active ? (<RssItemCard 
-        key={item.link} 
-        title={item.title} 
-        description={item.description} 
+      return item.active ? (<RssItemCard
+        key={item.link}
+        feedName={item.feedName}
+        title={item.title}
+        description={item.description}
         link={item.link}
         publishDate={item.publishDate}
       />) : null
@@ -51,6 +52,10 @@ const App = () => {
       return item;
     })
     setFeed([...newFeed]);
+  }
+
+  function toggleList() {
+    
   }
 
   const loading = (
@@ -72,6 +77,10 @@ const App = () => {
         <label className="filter-title">
           Filtros:
         </label>
+
+        <button className="toggle-list-button" onClick={toggleList}>
+          botão pra trocar a visão entre cards e lista
+        </button>
 
         <div className="filter-buttons-container">
           <div className={`filter-button ${feed.filter(item => item.feedName === 'Kotaku' && item.active === true).length > 0 ? 'checked' : ''}`} onClick={() => handleChangeFilter('Kotaku')}>

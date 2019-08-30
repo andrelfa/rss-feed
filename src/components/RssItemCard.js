@@ -8,6 +8,10 @@ const RssItemCard = (props) => {
     <div className="rss-item-card">
       <a class="card" href={props.link} target="blank">
         <div className="card-title-container">
+          <span className="title-label">
+            {props.feedName}
+          </span>
+          
           <label className="title">
             {props.title}
           </label>

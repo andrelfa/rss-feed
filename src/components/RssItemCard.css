@@ -12,7 +12,9 @@
 .card {
     display: block;
     margin: 0;
-    padding: 20px;
+    padding: 30px 20px;
+    position: relative;
+
     text-decoration: none;
 
     border-radius: 5px;
@@ -28,6 +30,20 @@
     padding-bottom: 10px;
 
     border-bottom: 1px solid #fff;
+}
+.title-label {
+    padding: 5px 20px;
+
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    
+    font-family: var(--farro);
+    color: #fff;
+    font-size: 14px;
+
+    border-radius: 5px;
+    background: #2b2d71;
 }
 .title {
     width: 100%;
@@ -48,7 +64,7 @@
     margin-top: 10px;
 
     font-family: var(--crimson);
-    color: #18242f;
+    color: #71787e;
     font-style: italic;
     font-size: 14px;
 }
@@ -75,14 +91,7 @@
         display: block;
     }
     .description small {
-        display: block;
-        margin-top: 5px;
-        padding-bottom: 10px;
-
-        font-size: 12px;
-        line-height: 14px;
-
-        border-bottom: 1px solid #dedede;
+        display: none;
     }
     .description p {
         width: 100%;
