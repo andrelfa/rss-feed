@@ -6,15 +6,19 @@ const RssItemCard = (props) => {
 
   return (
     <div className="rss-item-card">
-      <a href={props.link}>
-        <p className="title" target="blank">
-          {props.title}
+      <a class="card" href={props.link} target="blank">
+        <div className="card-title-container">
+          <label className="title">
+            {props.title}
+          </label>
+
           <span className="publish-date">
             {formatDate(props.publishDate)}
           </span>
-        </p>
+        </div>
+
         <div className="description-container">
-          <p className="description" dangerouslySetInnerHTML={{ __html: props.description }} />
+          <div className="description" dangerouslySetInnerHTML={{ __html: props.description }} />
         </div>
       </a>
     </div>
