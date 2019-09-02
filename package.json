@@ -11,6 +11,7 @@
     "react-firebaseui": "^4.0.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "recompose": "^0.30.0",
     "xml-js": "^1.6.11"
   },
   "scripts": {
