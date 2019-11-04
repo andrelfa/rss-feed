@@ -1,5 +1,6 @@
 import * as convert from 'xml-js' ;
 import moment from 'moment' ;
+import { sortByDateWithMoment, formatDate } from '../../utils/utils';
 moment.locale('pt-BR');
 
 class RSSFeedService {
@@ -20,6 +21,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }
 
@@ -39,6 +41,7 @@ class RSSFeedService {
             }
         }))
         .then(response => response.filter(item => item.link.indexOf('kotaku') > -1))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }
 
@@ -57,6 +60,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }
 
@@ -75,6 +79,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }  
     
@@ -93,6 +98,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     } 
     
@@ -102,15 +108,17 @@ class RSSFeedService {
         .then(response => response.text())
         .then(response => convert.xml2js(response, { compact: true, spaces: 4 }).rss.channel.item)
         .then(response => response.map((item) => {
+            console.log('data format', formatDate(moment(item.pubDate._text).format()))
             return {
                 feedName: 'G1',
                 description: item.description._text && item.description._text.length > 600 ? `${item.description._text.substring(0, 600).trim()}...` : item.description._text,
                 title: `${item.title._text}`,
                 link: item.link._text,
-                publishDate: moment(item.pubDate._text).format('YYYY-MM-DD HH:mm'),
+                publishDate: formatDate(moment(item.pubDate._text).format()),
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }  
 
@@ -129,6 +137,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }  
     
@@ -147,6 +156,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }   
     
@@ -165,6 +175,7 @@ class RSSFeedService {
                 active: true
             }
         }))
+        .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     }       
 }

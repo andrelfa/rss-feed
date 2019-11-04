@@ -1,5 +1,5 @@
 /* header */
-.title-container {
+.titleContainer {
   width: 100%;
 
   font-family: var(--bungee);
@@ -10,14 +10,14 @@
   text-align: center;
   user-select: none;
 }
-.filter-container {
+.filterContainer {
   width: 100%;
   margin-top: 40px;
   padding-bottom: 30px;
 
   border-bottom: 2px solid #fff;
 }
-.filter-title {
+.filterTitle {
   width: 100%;
   display: block;
 
@@ -26,7 +26,7 @@
   font-size: 20px;
   text-align: center;
 }
-.filter-buttons-container {
+.filterButtonsContainer {
   width: 100%;
   margin-top: 20px;
 
@@ -34,7 +34,7 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.filter-button {
+.filterButton {
   margin: 0 10px 10px 10px;
   padding: 10px 20px;
 
@@ -46,13 +46,14 @@
   background: #fff;
   cursor: pointer;
 }
-.toggle-list-button {
-  display: none;
+
+.toggleListButton {
+  /* display: none; */
 }
 /* header */
 
 /* conteúdo */
-.items-container {
+.itemsContainer {
   width: 100%;
   margin-top: 40px;
 
@@ -61,7 +62,7 @@
   column-gap: 40px;
   -webkit-column-gap: 40px;
 }
-.loading-container {
+.loadingContainer {
   width: 100%;
   margin: 0 auto 0 auto;
   padding: 40px 20px;
@@ -71,9 +72,9 @@
   flex-wrap: wrap;
 
   border-radius: 10px;
-  background: #fff;
+  /* background: #fff; */
 }
-  .loading-container label {  
+  .loadingContainerLabel {  
       width: 100%;
       display: block;
       margin-bottom: 20px;
@@ -83,10 +84,11 @@
       font-size: 20px;
       text-align: center;
   }
-  .loading-container img {
+  .loadingContainerImage {
       width: 50px;
       height: 50px;
       margin: 0;
+      filter: invert(1);
 
       animation-name: loading;
       animation-duration: .8s;
@@ -104,7 +106,7 @@
 /* conteúdo */
 
 @media screen and (min-width: 660px) {
-  .items-container {
+  .itemsContainer {
       column-count: 2;
       -webkit-column-count: 2;
   }
@@ -114,12 +116,12 @@
   .toggle-list-button {
       display: block;
   }
-  .items-container.columns {
+  .itemsContainer.columns {
       column-count: 3;
       -webkit-column-count: 3;
   }
 
-  .items-container.rows {
+  .itemsContainer.rows {
     column-count: 1;
     -webkit-column-count: 1;
   }

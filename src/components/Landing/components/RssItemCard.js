@@ -17,7 +17,7 @@ const RssItemCard = (props) => {
           </label>
 
           <span className="publish-date">
-            {formatDate(props.publishDate)}
+            {props.publishDate}
           </span>
         </div>
 

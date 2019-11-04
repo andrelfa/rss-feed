@@ -7,12 +7,14 @@ import { AuthUserContext } from '../Session';
 import Styles from './index.module.css';
 
 const Navigation = ({ authUser }) => (
-  <div className={Styles.mainNavigation}>
-    <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? handleNavigation(authUser) : null
-      }
-    </AuthUserContext.Consumer>
+  <div className="container">
+    <div className={Styles.mainNavigation}>
+      <AuthUserContext.Consumer>
+        {authUser =>
+          authUser ? handleNavigation(authUser) : null
+        }
+      </AuthUserContext.Consumer>
+    </div>
   </div>
 );
 

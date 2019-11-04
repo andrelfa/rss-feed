@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './index.css';
+import Styles from './index.module.css';
 import Service from './service';
 import RssItemCard from './components/RssItemCard';
 import { sortByDateWithMoment } from '../../utils/utils';
@@ -7,6 +7,7 @@ import { sortByDateWithMoment } from '../../utils/utils';
 const App = () => {
   const [feed, setFeed] = useState([]);
   const [showColumns, setShowColumns] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all([
@@ -19,18 +20,11 @@ const App = () => {
       Service.getWiredFeed(),
       Service.getPolygonFeed(),
     ]).then((res) => {
-      const [bbc, kotaku, b9, vox, nytimes, g1, wired, polygon] = res;
-      setFeed((old) => sortByDateWithMoment([
-        ...old,
-        ...sortByDateWithMoment(bbc, 'publishDate'),
-        ...sortByDateWithMoment([...kotaku], 'publishDate'),
-        ...sortByDateWithMoment([...b9], 'publishDate'),
-        ...sortByDateWithMoment([...vox], 'publishDate'),
-        ...sortByDateWithMoment([...nytimes], 'publishDate'),
-        ...sortByDateWithMoment([...g1], 'publishDate'),
-        ...sortByDateWithMoment([...wired], 'publishDate'),
-        ...sortByDateWithMoment([...polygon], 'publishDate'),
-      ], 'publishDate'))
+      // Transformando cada array de noticia em apenas 01 array com todas as noticias sortidas por data de publicação;
+      const news = sortByDateWithMoment([...res.flat(1)], 'publishDate');
+
+      setFeed([...news]);
+      setLoading(false);
     })
   }, []);
 
@@ -55,39 +49,40 @@ const App = () => {
     setFeed([...newFeed]);
   }
 
-  const loading = (
-    <div className="loading-container">
-      <label>Calma que tá carregando...</label>
-      <img src={'../../img/spinner.svg'} alt="spinner" />
+  const loadingContent = (
+    <div className={Styles.loadingContainer}>
+      <img src={'../../img/spinner.svg'} alt="spinner" className={Styles.loadingContainerImage} />
     </div>
   )
 
+  if (loading) return loadingContent;
+
   return (
-    <div className="App container">
-      <div className="title-container">
+    <div className="container">
+      <div className={Styles.titleContainer}>
         <label>
           Feed dos Amigo
         </label>
       </div>
 
-      <div className="filter-container">
-        <label className="filter-title">
+      <div className={Styles.filterContainer}>
+        <label className={Styles.filterTitle}>
           Filtros:
         </label>
 
-        <button className="toggle-list-button" onClick={() => setShowColumns(!showColumns)} >
+        <button className={Styles.toggleListButton} onClick={() => setShowColumns(!showColumns)} >
           Alternar visualização
         </button>
 
-        <div className="filter-buttons-container">
-          <div className={`filter-button ${feed.filter(item => item.feedName === 'Kotaku' && item.active === true).length > 0 ? 'checked' : ''}`} onClick={() => handleChangeFilter('Kotaku')}>
+        <div className={Styles.filterButtonsContainer}>
+          <div className={`${Styles.filterButton} ${Styles.teste}`} onClick={() => handleChangeFilter('Kotaku')}>
             Kotaku
           </div>
         </div>
       </div>
 
-      <div className={`items-container ${showColumns ? 'columns' : 'rows'}`}>
-        {feed.length ? feedItems() : loading}
+      <div className={`${Styles.itemsContainer} ${showColumns ? `${Styles.columns}` : `${Styles.rows}`}`}>
+        {feedItems()}
       </div>
     </div>
   );
