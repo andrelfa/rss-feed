@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
+import Styles from './index.module.css';
 
 const Navigation = ({ authUser }) => (
-  <div className="main-navigation">
+  <div className={Styles.mainNavigation}>
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? handleNavigation(authUser) : null
@@ -20,7 +21,7 @@ const handleNavigation = (user) => {
 }
 
 const NavigationAuth = () => (
-  <ul>
+  <ul className="navbar">
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
