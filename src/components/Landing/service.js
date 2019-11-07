@@ -1,6 +1,6 @@
 import * as convert from 'xml-js' ;
 import moment from 'moment' ;
-import { sortByDateWithMoment, formatDate, generateRandomNumberSmallerThan24 } from '../../utils/utils';
+import { sortByDateWithMoment, formatDate, generateRandomNumberSmallerThan24, generateRandomNumber } from '../../utils/utils';
 moment.locale('pt-BR');
 
 class RSSFeedService {
@@ -180,7 +180,8 @@ class RSSFeedService {
     
     getWallpaper = () => {
         const proxyurl = "https://sheltered-reef-69308.herokuapp.com/";
-        const url = "https://wallhaven.cc/api/v1/search?resolutions=1920x1080&colors=999999&categories=100"; // site that doesn’t send Access-Control-*
+        const page = generateRandomNumber();
+        const url = `https://wallhaven.cc/api/v1/search?resolutions=1920x1080&colors=999999&categories=100&page=${page}`; // site that doesn’t send Access-Control-*
         return fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
         .then(response => response.json())
         .then(response => response.data)

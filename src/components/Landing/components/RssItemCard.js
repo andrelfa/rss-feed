@@ -1,6 +1,5 @@
 import React from 'react';
 import './RssItemCard.css';
-import { formatDate } from '../../../utils/utils';
 
 const RssItemCard = (props) => {
 

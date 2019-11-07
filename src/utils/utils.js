@@ -27,3 +27,7 @@ export const generateRandomNumberSmallerThan24 = () => {
   const randomNumber = Math.floor(Math.random() * 100);
   return randomNumber <= 24 ? randomNumber : generateRandomNumberSmallerThan24();
 }
+
+export const generateRandomNumber = () => {
+  return Math.floor(Math.random() * 100);
+}
