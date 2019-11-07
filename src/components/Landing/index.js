@@ -7,9 +7,17 @@ import { sortByDateWithMoment } from '../../utils/utils';
 const App = () => {
   const [feed, setFeed] = useState([]);
   const [showColumns, setShowColumns] = useState(true);
+  const [wallpaper, setWallpaper] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const getWallpaper = async () => {
+      const wallpaperUrl = await Service.getWallpaper();      
+      console.log('wallpaper url', wallpaperUrl)
+      setWallpaper(wallpaperUrl)
+    };
+    getWallpaper();
+
     Promise.all([
       Service.getBBCFeed(),
       Service.getKotakuFeed(),
@@ -19,7 +27,7 @@ const App = () => {
       Service.getG1Feed(),
       Service.getWiredFeed(),
       Service.getPolygonFeed(),
-    ]).then((res) => {
+    ]).then(async (res) => {
       // Transformando cada array de noticia em apenas 01 array com todas as noticias sortidas por data de publicação;
       const news = sortByDateWithMoment([...res.flat(1)], 'publishDate');
 
@@ -58,31 +66,44 @@ const App = () => {
   if (loading) return loadingContent;
 
   return (
-    <div className="container">
-      <div className={Styles.titleContainer}>
-        <label>
-          Feed dos Amigo
-        </label>
-      </div>
-
-      <div className={Styles.filterContainer}>
-        <label className={Styles.filterTitle}>
-          Filtros:
-        </label>
-
-        <button className={Styles.toggleListButton} onClick={() => setShowColumns(!showColumns)} >
-          Alternar visualização
-        </button>
-
-        <div className={Styles.filterButtonsContainer}>
-          <div className={`${Styles.filterButton} ${Styles.teste}`} onClick={() => handleChangeFilter('Kotaku')}>
-            Kotaku
+    <div style={wallpaper ? {
+        backgroundImage: `url(${wallpaper})`, 
+        backgroundRepeat: "no-repeat", 
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center center"
+      } : null}>
+      <div className={Styles.titleOuterContainer}>
+        <div className={`container`}>
+          <div className={Styles.titleContainer}>
+            <label>
+              Feed dos Amigo
+            </label>
           </div>
+
+          {/* <div className={Styles.filterContainer}>
+            <label className={Styles.filterTitle}>
+              Filtros:
+            </label>
+
+            <button className={Styles.toggleListButton} onClick={() => setShowColumns(!showColumns)} >
+              Alternar visualização
+            </button>
+
+            <div className={Styles.filterButtonsContainer}>
+              <div className={`${Styles.filterButton} ${Styles.teste}`} onClick={() => handleChangeFilter('Kotaku')}>
+                Kotaku
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
 
-      <div className={`${Styles.itemsContainer} ${showColumns ? `${Styles.columns}` : `${Styles.rows}`}`}>
-        {feedItems()}
+      <div>
+        <div className="container">
+          <div className={`${Styles.itemsContainer} ${showColumns ? `${Styles.columns}` : `${Styles.rows}`}`}>
+            {feedItems()}
+          </div>
+        </div>
       </div>
     </div>
   );

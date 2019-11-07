@@ -22,3 +22,8 @@ export const sortByDateWithMoment = (array, field) => {
     return dateB - dateA;
   });
 }
+
+export const generateRandomNumberSmallerThan24 = () => {
+  const randomNumber = Math.floor(Math.random() * 100);
+  return randomNumber <= 24 ? randomNumber : generateRandomNumberSmallerThan24();
+}

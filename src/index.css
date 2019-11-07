@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Bungee Shade";
+  src: url("/fonts/bungee-shade.otf");
+}
+
 body {
   margin: 0;
   padding: 0;

@@ -1,6 +1,6 @@
 import * as convert from 'xml-js' ;
 import moment from 'moment' ;
-import { sortByDateWithMoment, formatDate } from '../../utils/utils';
+import { sortByDateWithMoment, formatDate, generateRandomNumberSmallerThan24 } from '../../utils/utils';
 moment.locale('pt-BR');
 
 class RSSFeedService {
@@ -108,7 +108,6 @@ class RSSFeedService {
         .then(response => response.text())
         .then(response => convert.xml2js(response, { compact: true, spaces: 4 }).rss.channel.item)
         .then(response => response.map((item) => {
-            console.log('data format', formatDate(moment(item.pubDate._text).format()))
             return {
                 feedName: 'G1',
                 description: item.description._text && item.description._text.length > 600 ? `${item.description._text.substring(0, 600).trim()}...` : item.description._text,
@@ -177,7 +176,17 @@ class RSSFeedService {
         }))
         .then(response => sortByDateWithMoment(response, 'publishDate'))
         .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    }       
+    }   
+    
+    getWallpaper = () => {
+        const proxyurl = "https://sheltered-reef-69308.herokuapp.com/";
+        const url = "https://wallhaven.cc/api/v1/search?resolutions=1920x1080&colors=999999&categories=100"; // site that doesn’t send Access-Control-*
+        return fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+        .then(response => response.json())
+        .then(response => response.data)
+        .then(response => response[generateRandomNumberSmallerThan24()].path)
+        .catch((error) => console.log("Error fetching wallpapers", error))
+    }     
 }
 
 export default new RSSFeedService();

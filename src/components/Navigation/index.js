@@ -7,13 +7,15 @@ import { AuthUserContext } from '../Session';
 import Styles from './index.module.css';
 
 const Navigation = ({ authUser }) => (
-  <div className="container">
-    <div className={Styles.mainNavigation}>
-      <AuthUserContext.Consumer>
-        {authUser =>
-          authUser ? handleNavigation(authUser) : null
-        }
-      </AuthUserContext.Consumer>
+  <div className={Styles.navbarContainer}>
+    <div className={`container`}>
+      <div className={Styles.mainNavigation}>
+        <AuthUserContext.Consumer>
+          {authUser =>
+            handleNavigation(authUser)
+          }
+        </AuthUserContext.Consumer>
+      </div>
     </div>
   </div>
 );
@@ -23,28 +25,25 @@ const handleNavigation = (user) => {
 }
 
 const NavigationAuth = () => (
-  <ul className="navbar">
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+  <ul className={Styles.navbar}>
+    <li className={Styles.navbarItem}>
+      <Link to={ROUTES.LANDING}>Home</Link>
     </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
+    <li className={Styles.navbarItem}>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
     </li>
-    <li>
+    <li className={Styles.navbarItem}>
       <SignOutButton />
     </li>
   </ul>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+  <ul className={Styles.navbar}>
+    <li className={Styles.navbarItem}>
+      <Link to={ROUTES.LANDING}>Home</Link>
     </li>
-    <li>
+    <li className={Styles.navbarItem}>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </li>
   </ul>

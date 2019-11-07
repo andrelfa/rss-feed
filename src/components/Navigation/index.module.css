@@ -1,3 +1,26 @@
 .navbar {
-  display: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+}
+
+.navbarItem {
+  display: inline-block;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.navbarItem a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: Helvetica;
+  padding: 15px 0;
+  display: inline-block;
+}
+
+.navbarContainer {
+  border-bottom: 1px solid #fff;
 }
